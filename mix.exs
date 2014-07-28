@@ -25,6 +25,6 @@ defmodule JapaneseHoliday.Mixfile do
   #
   # Type `mix help deps` for more examples and options
   defp deps do
-    []
+    [{:timex, "~> 0.10.2"}]
   end
 end
