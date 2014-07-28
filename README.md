@@ -2,6 +2,15 @@
 
 The original idea is [http://www.h3.dion.ne.jp/~sakatsu/holiday_logic.htm]
 
+**WIP**
+
+### Usage
+
+```
+JapaneseHoliday.holiday_name(1990, 1,  1)  #=> "元日"
+JapaneseHoliday.holiday_name(2016, 8, 11)  #=> "山の日"
+```
+
 ### Copyright
 
 ```
