@@ -1,0 +1,2 @@
+defmodule JapaneseHoliday do
+end
