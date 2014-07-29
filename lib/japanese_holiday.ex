@@ -33,7 +33,7 @@ defmodule JapaneseHoliday do
   def holiday_name(year, month, day) do
     date = Date.from({year, month, day}, @jst)
     case holiday_name(date) do
-      nil  -> if substitute_holiday?(date), do: "hurikae"
+      nil  -> if substitute_holiday?(date), do: "振替休日"
       name -> name
     end
   end
@@ -113,22 +113,20 @@ defmodule JapaneseHoliday do
   defp do_holiday_name(%DateTime{}), do: nil
 
   defp vernal_equinox_day(year) do
-    a = 0.242194*(year-1980) - Float.floor(year-1980 / 4)
+    a = 0.242194*(year-1980) - Float.floor((year-1980) / 4)
     cond do
-      year in 1851 .. 1899 -> Float.floor(19.8277 + a)
-      year in 1900 .. 1979 -> Float.floor(20.8357 + a)
-      year in 1980 .. 2099 -> Float.floor(20.8431 + a)
-      year in 2100 .. 2150 -> Float.floor(21.8510 + a)
+      year <= 1979 -> trunc(20.8357 + a)
+      year <= 2099 -> trunc(20.8431 + a)
+      year <= 2150 -> trunc(21.8510 + a)
     end
   end
 
   defp autumnal_equinox_day(year) do
-    a = 0.242194*(year-1980) - Float.floor(year-1980 / 4)
+    a = 0.242194*(year-1980) - Float.floor((year-1980) / 4)
     cond do
-      year in 1851 .. 1899 -> Float.floor(22.2588 + a)
-      year in 1900 .. 1979 -> Float.floor(23.2588 + a)
-      year in 1980 .. 2099 -> Float.floor(23.2488 + a)
-      year in 2100 .. 2150 -> Float.floor(24.2488 + a)
+      year <= 1979 -> trunc(23.2588 + a)
+      year <= 2099 -> trunc(23.2488 + a)
+      year <= 2150 -> trunc(24.2488 + a)
     end
   end
 end
