@@ -94,7 +94,7 @@ defmodule JapaneseHoliday do
       day  == equinox -> "秋分の日"
       year >= 2003 and Date.weekday(date) == @mon and div(day-1, 7) == 2 -> "敬老の日"
       year >= 2003 and Date.weekday(date) == @tue and day == equinox-1 -> "国民の休日"
-      year >= 1966 and day == 15 -> "敬老の日"
+      year >= 1966 and year <= 2002 and day == 15 -> "敬老の日"
       true -> nil
     end
   end
