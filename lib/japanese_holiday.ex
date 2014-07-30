@@ -48,7 +48,7 @@ defmodule JapaneseHoliday do
   defp substitute_holiday?(date) do
     Date.weekday(date) == @mon and
     Date.compare(@substitute_holiday_enforcement, date) >= 0 and
-    is_binary(holiday_name Date.subtract date, {0, 3600, 0})
+    is_binary holiday_name(Date.subtract date, {0, 3600, 0})
   end
 
   defp do_holiday_name(%DateTime{            month: 1, day:   1}), do: "元日"
