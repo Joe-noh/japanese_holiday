@@ -38,7 +38,6 @@ _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 
 ### TODO
 
-- Documentation
 - Release to hex.pm
 - Some more test
 - 日本語でいいよね
