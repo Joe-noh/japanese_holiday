@@ -2,13 +2,16 @@
 
 The original idea is [http://www.h3.dion.ne.jp/~sakatsu/holiday_logic.htm]
 
-**WIP**
-
 ### Usage
 
 ```
 JapaneseHoliday.holiday_name(1990, 1,  1)  #=> "元日"
 JapaneseHoliday.holiday_name(2016, 8, 11)  #=> "山の日"
+
+use Timex
+
+jan_1st = Date.from({2014, 1, 1}, Date.timezone("JST"))
+JapaneseHoliday.holiday_name(jan_1st) #=> "元日"
 ```
 
 ### Copyright
@@ -38,6 +41,4 @@ _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 
 ### TODO
 
-- Release to hex.pm
 - Some more test
-- 日本語でいいよね
