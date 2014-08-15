@@ -1,6 +1,18 @@
 defmodule JapaneseHolidayTest do
   use ExUnit.Case
 
+  test "basic" do
+    use Timex
+
+    jan_1st = Date.from({2014, 1, 1}, Date.timezone("JST"))
+    jan_2nd = Date.from({2014, 1, 2}, Date.timezone("JST"))
+
+    assert JapaneseHoliday.holiday_name(jan_1st) == "元日"
+    assert JapaneseHoliday.holiday_name(jan_2nd) == nil
+    assert JapaneseHoliday.holiday_name(2014, 1, 1) == "元日"
+    assert JapaneseHoliday.holiday_name(2014, 1, 2) == nil
+  end
+
   # 祝日法施行前
   test "1947" do
     for month <- [1, 3, 5, 7, 8, 10, 12], day <- 1 .. 31 do
