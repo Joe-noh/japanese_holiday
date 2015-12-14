@@ -17,7 +17,7 @@ defmodule JapaneseHoliday.Mixfile do
   end
 
   defp deps do
-    [{:timex, "~> 0.12.5"}]
+    [{:timex, "1.0.0-rc4"}]
   end
 
   defp package do
