@@ -5,7 +5,7 @@ defmodule JapaneseHoliday.Mixfile do
     [
       app: :japanese_holiday,
       version: "0.0.2",
-      elixir: ">= 1.0.0",
+      elixir: ">= 1.1.1",
       deps: deps,
       package: package,
       description: desc
@@ -13,7 +13,7 @@ defmodule JapaneseHoliday.Mixfile do
   end
 
   def application do
-    [applications: []]
+    [applications: [:logger, :tzdata]]
   end
 
   defp deps do

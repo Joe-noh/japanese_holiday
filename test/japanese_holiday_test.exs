@@ -4,8 +4,8 @@ defmodule JapaneseHolidayTest do
   test "basic" do
     use Timex
 
-    jan_1st = Date.from({2014, 1, 1}, Date.timezone("JST"))
-    jan_2nd = Date.from({2014, 1, 2}, Date.timezone("JST"))
+    jan_1st = Date.from({2014, 1, 1}, Timezone.get("Asia/Tokyo"))
+    jan_2nd = Date.from({2014, 1, 2}, Timezone.get("Asia/Tokyo"))
 
     assert JapaneseHoliday.holiday_name(jan_1st) == "元日"
     assert JapaneseHoliday.holiday_name(jan_2nd) == nil

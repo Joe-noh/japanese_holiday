@@ -28,9 +28,10 @@ defmodule JapaneseHoliday do
   @fri 5
   @sat 6
   @sun 7
-  @jst Date.timezone("JST")
-  @national_holiday_enforcement   Date.from({1948, 7, 20}, @jst)
-  @substitute_holiday_enforcement Date.from({1973, 4, 12}, @jst)
+
+  defp jst, do: Timezone.get("Asia/Tokyo")
+  defp national_holiday_enforcement  , do: Date.from({1948, 7, 20}, jst)
+  defp substitute_holiday_enforcement, do: Date.from({1973, 4, 12}, jst)
 
   @doc """
   引数が表す日付が祝日である場合、その名前を返す
@@ -43,7 +44,7 @@ defmodule JapaneseHoliday do
   """
   @spec holiday_name(non_neg_integer, non_neg_integer, non_neg_integer) :: String.t | nil
   def holiday_name(year, month, day) do
-    date = Date.from({year, month, day}, @jst)
+    date = Date.from({year, month, day}, jst)
     case holiday_name(date) do
       nil  -> if substitute_holiday?(date), do: "振替休日"
       name -> name
@@ -62,7 +63,7 @@ defmodule JapaneseHoliday do
   """
   @spec holiday_name(Timex.Date.t) :: String.t | nil
   def holiday_name(date) do
-    case Date.compare(@national_holiday_enforcement, date) do
+    case Date.compare(date, national_holiday_enforcement) do
       -1 -> nil
       _  -> do_holiday_name(date)
     end
@@ -71,7 +72,7 @@ defmodule JapaneseHoliday do
   @doc false
   defp substitute_holiday?(date) do
     Date.weekday(date) == @mon and
-    Date.compare(@substitute_holiday_enforcement, date) >= 0 and
+    Date.compare(date, substitute_holiday_enforcement) >= 0 and
     is_binary holiday_name(Date.subtract date, {0, 3600, 0})
   end
 
